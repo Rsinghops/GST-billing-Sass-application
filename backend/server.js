@@ -5,6 +5,7 @@ const connectDB = require("./src/config/db");
 
 const customerRoutes = require("./src/routes/customerRoutes");
 const productRoutes = require("./src/routes/productRoutes");
+const invoiceRoutes = require("./src/routes/invoiceRoutes");
 
 const app = express();
 
@@ -17,6 +18,7 @@ connectDB();
 app.use(express.json());
 app.use("/api/customers", customerRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/invoices", invoiceRoutes);
 
 // Health Check API
 app.get("/api/health", (req, res) => {
@@ -25,8 +27,6 @@ app.get("/api/health", (req, res) => {
     message: "GST Billing API is running",
   });
 });
-
-// Start Server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
